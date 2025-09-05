@@ -10,14 +10,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from src.models.user import db
 from src.routes.user import user_bp
 from src.routes.notas_fiscais import notas_fiscais_bp
-from src.routes.maino import maino_bp
+
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 
 app.register_blueprint(user_bp, url_prefix='/api')
 app.register_blueprint(notas_fiscais_bp, url_prefix='/api')
-app.register_blueprint(maino_bp, url_prefix='/api')
+
 
 # Configuração do banco de dados
 app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
