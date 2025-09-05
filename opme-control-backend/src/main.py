@@ -9,14 +9,14 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 # Imports dos módulos da aplicação
 from src.models.user import db
 from src.routes.user import user_bp
-from src.routes.opme import opme_bp
+from src.routes.notas_fiscais import notas_fiscais_bp
 from src.routes.maino import maino_bp
 
 app = Flask(__name__, static_folder=os.path.join(os.path.dirname(__file__), 'static'))
 app.config['SECRET_KEY'] = 'asdf#FGSgvasgf$5$WGT'
 
 app.register_blueprint(user_bp, url_prefix='/api')
-app.register_blueprint(opme_bp, url_prefix='/api')
+app.register_blueprint(notas_fiscais_bp, url_prefix='/api')
 app.register_blueprint(maino_bp, url_prefix='/api')
 
 # Configuração do banco de dados
@@ -41,3 +41,7 @@ def serve(path):
             return send_from_directory(static_folder_path, 'index.html')
         else:
             return "index.html not found", 404
+
+
+from flask_cors import CORS
+CORS(app)
